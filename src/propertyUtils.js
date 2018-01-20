@@ -1,58 +1,60 @@
 let vendorPrefix;
 
 const jsCssMap = {
-  Webkit: '-webkit-',
-  Moz: '-moz-',
-  // IE did it wrong again ...
-  ms: '-ms-',
-  O: '-o-',
+    Webkit: '-webkit-',
+    Moz: '-moz-',
+    // IE did it wrong again ...
+    ms: '-ms-',
+    O: '-o-',
 };
 
 function getVendorPrefix() {
-  if (vendorPrefix !== undefined) {
-    return vendorPrefix;
-  }
-  vendorPrefix = '';
-  const style = document.createElement('p').style;
-  const testProp = 'Transform';
-  for (const key in jsCssMap) {
-    if (key + testProp in style) {
-      vendorPrefix = key;
+    if (vendorPrefix !== undefined) {
+        return vendorPrefix;
     }
-  }
-  return vendorPrefix;
+    vendorPrefix = '';
+    const style = document.createElement('p').style;
+    const testProp = 'Transform';
+    for (const key in jsCssMap) {
+        if (key + testProp in style) {
+            vendorPrefix = key;
+        }
+    }
+    return vendorPrefix;
 }
 
 function getTransitionName() {
-  return getVendorPrefix() ? `${getVendorPrefix()}TransitionProperty` : 'transitionProperty';
+    return getVendorPrefix() ? `${getVendorPrefix()}TransitionProperty` : 'transitionProperty';
 }
 
 export function getTransformName() {
-  return getVendorPrefix() ? `${getVendorPrefix()}Transform` : 'transform';
+    return getVendorPrefix() ? `${getVendorPrefix()}Transform` : 'transform';
 }
 
 export function setTransitionProperty(node, value) {
-  const name = getTransitionName();
-  if (name) {
-    node.style[name] = value;
-    if (name !== 'transitionProperty') {
-      node.style.transitionProperty = value;
+    // https://www.w3schools.com/cssref/css3_pr_transition-property.asp
+    const name = getTransitionName();
+    if (name) {
+        node.style[name] = value;
+        if (name !== 'transitionProperty') {
+            node.style.transitionProperty = value;
+        }
     }
-  }
 }
 
 function setTransform(node, value) {
-  const name = getTransformName();
-  if (name) {
-    node.style[name] = value;
-    if (name !== 'transform') {
-      node.style.transform = value;
+    const name = getTransformName();
+    if (name) {
+        node.style[name] = value;
+        if (name !== 'transform') {
+            node.style.transform = value;
+        }
     }
-  }
 }
 
 export function getTransitionProperty(node) {
-  return node.style.transitionProperty || node.style[getTransitionName()];
+    // https://www.w3schools.com/cssref/css3_pr_transition-property.asp
+    return node.style.transitionProperty || node.style[getTransitionName()];
 }
 
 export function getTransformXY(node) {

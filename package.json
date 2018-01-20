@@ -48,6 +48,5 @@
     "react-dom": "15.x"
   },
   "pre-commit": [
-    "lint"
   ]
 }

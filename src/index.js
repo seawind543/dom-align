@@ -74,20 +74,20 @@ function normalizeOffset(offset, el) {
 }
 
 function domAlign(el, refNode, align) {
-  let points = align.points;
-  let offset = align.offset || [0, 0];
-  let targetOffset = align.targetOffset || [0, 0];
-  let overflow = align.overflow;
-  const target = align.target || refNode;
-  const source = align.source || el;
-  offset = [].concat(offset);
-  targetOffset = [].concat(targetOffset);
-  overflow = overflow || {};
-  const newOverflowCfg = {};
-  let fail = 0;
-  // 当前节点可以被放置的显示区域
-  const visibleRect = getVisibleRectForElement(source);
-  // 当前节点所占的区域, left/top/width/height
+    let points = align.points;
+    let offset = align.offset || [0, 0];
+    let targetOffset = align.targetOffset || [0, 0];
+    let overflow = align.overflow;
+    const target = align.target || refNode;
+    const source = align.source || el;
+    offset = [].concat(offset);
+    targetOffset = [].concat(targetOffset);
+    overflow = overflow || {};
+    const newOverflowCfg = {};
+    let fail = 0;
+    // 当前节点可以被放置的显示区域
+    const visibleRect = getVisibleRectForElement(source);
+    // 当前节点所占的区域, left/top/width/height
   const elRegion = getRegion(source);
   // 参照节点所占的区域, left/top/width/height
   const refNodeRegion = getRegion(target);

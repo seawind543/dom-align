@@ -1,12 +1,13 @@
 import utils from './utils';
 
 function getRegion(node) {
-  let offset;
-  let w;
-  let h;
-  if (!utils.isWindow(node) && node.nodeType !== 9) {
-    offset = utils.offset(node);
-    w = utils.outerWidth(node);
+    let offset;
+    let w;
+    let h;
+    // nodeType === 9 is 'document'
+    if (!utils.isWindow(node) && node.nodeType !== 9) {
+        offset = utils.offset(node);
+        w = utils.outerWidth(node);
     h = utils.outerHeight(node);
   } else {
     const win = utils.getWindow(node);
